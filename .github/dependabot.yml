@@ -1,15 +1,31 @@
----
 version: 2
 updates:
+  # 1. GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-  - package-ecosystem: npm
+      day: "monday"
+    groups:
+      actions:
+        patterns: ["*"]
+
+  # 2. JavaScript (matching your /javascript folder)
+  - package-ecosystem: "npm"
     directory: "/javascript"
     schedule:
       interval: "weekly"
-  - package-ecosystem: bundler
+      day: "monday"
+    groups:
+      js-deps:
+        patterns: ["*"]
+
+  # 3. Ruby (matching your /ruby folder)
+  - package-ecosystem: "ruby"
     directory: "/ruby"
     schedule:
       interval: "weekly"
+      day: "monday"
+    groups:
+      ruby-deps:
+        patterns: ["*"]
